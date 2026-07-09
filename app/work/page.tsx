@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CallButton from "@/components/CallButton";
+import PageHeader from "@/components/PageHeader";
 import WorkGallery from "@/components/WorkGallery";
 import { projects } from "@/lib/data";
 import { site } from "@/lib/site";
@@ -14,17 +15,11 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <>
-      <section className="border-b border-line bg-surface-2">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <p className="eyebrow">Our Work</p>
-          <h1 className="mt-2 text-4xl md:text-5xl">Builds we&apos;re proud of</h1>
-          <p className="mt-4 max-w-2xl leading-relaxed text-steel-600">
-            A look at recent post-frame projects around northeast Kansas — from
-            custom barndominiums to working shops and machine sheds. Tap any photo
-            to take a closer look.
-          </p>
-        </div>
-      </section>
+      <PageHeader eyebrow="Our Work" title="Builds we&apos;re proud of">
+        A look at recent post-frame projects around northeast Kansas — from
+        custom barndominiums to working shops and machine sheds. Tap any photo
+        to take a closer look.
+      </PageHeader>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <WorkGallery projects={projects} />

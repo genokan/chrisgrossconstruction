@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { FacebookIcon, MailIcon } from "@/components/ContactIcons";
 import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
     <footer className="bg-ink text-steel-400">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <div className="font-display text-xl font-bold uppercase tracking-tight text-white">
             Chris Gross
@@ -13,8 +14,8 @@ export default function Footer() {
             Construction
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
-            Family-owned post-frame builder in Holton, Kansas. Barndominiums,
-            shops, and farm buildings across northeast Kansas.
+            Family-owned post-frame builder in Holton, Kansas with more than 25
+            years of experience across northeast Kansas.
           </p>
         </div>
 
@@ -43,8 +44,28 @@ export default function Footer() {
                 {site.phoneDisplay}
               </a>
             </li>
+            <li>
+              <a
+                href={site.emailHref}
+                className="inline-flex items-center gap-2 text-white transition-colors hover:text-accent"
+              >
+                <MailIcon className="h-4 w-4" />
+                Email Us
+              </a>
+            </li>
             <li>{site.address.full}</li>
             <li>{site.hours}</li>
+            <li>
+              <a
+                href={site.socialProfiles[0].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white transition-colors hover:text-accent"
+              >
+                <FacebookIcon className="h-4 w-4" />
+                Follow on Facebook
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -55,6 +76,26 @@ export default function Footer() {
           <p className="mt-4 text-sm leading-relaxed">
             {site.serviceArea.slice(0, 8).join(" · ")}
           </p>
+        </div>
+
+        <div>
+          <h4 className="font-display text-sm font-semibold uppercase tracking-wide text-white">
+            Trust & Profiles
+          </h4>
+          <ul className="mt-4 space-y-2 text-sm">
+            {site.trustProfiles.map((profile) => (
+              <li key={profile.href}>
+                <a
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  {profile.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

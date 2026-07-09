@@ -52,9 +52,11 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "GeneralContractor",
   name: site.name,
+  legalName: site.legalName,
   image: `${site.url}/photos/p08.jpg`,
   url: site.url,
   telephone: site.phoneDisplay,
+  email: site.emailDisplay,
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -68,6 +70,7 @@ const jsonLd = {
   areaServed: site.serviceArea.map((name) => ({ "@type": "City", name })),
   openingHours: "Mo-Fr 07:00-17:00",
   slogan: site.tagline,
+  sameAs: site.externalProfiles.map((profile) => profile.href),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
