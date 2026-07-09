@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Chris Gross Construction — design tokens
+   Thesis: warm human "call" action against cold steel structure.
+   Palette pulled from his builds: charcoal trim, white, big Kansas sky.
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #16181b;
+  --color-steel-900: #1f2328;
+  --color-steel-700: #363b42;
+  --color-steel-600: #4b525a;
+  --color-steel-500: #656c74;
+  --color-steel-400: #8a9099;
+  --color-line: #e4e6e9;
+  --color-surface: #ffffff;
+  --color-surface-2: #f5f6f7;
+  --color-accent: #c96a1b;
+  --color-accent-600: #a9560f;
+
+  --font-display: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-surface);
+    color: var(--color-steel-600);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-steel-900);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  /* Accessible focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* Uppercase label / eyebrow used across sections */
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--color-accent);
+}
