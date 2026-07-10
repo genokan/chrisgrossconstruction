@@ -85,7 +85,7 @@ export default function Home() {
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={p.image}
-                  alt={`${p.title} — ${p.location}`}
+                  alt={p.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -96,9 +96,6 @@ export default function Home() {
               </div>
               <div className="px-4 py-4">
                 <h3 className="font-display text-lg font-semibold text-steel-900">{p.title}</h3>
-                <p className="mt-0.5 font-display text-xs font-semibold uppercase tracking-wide text-accent">
-                  {p.location}
-                </p>
               </div>
             </Link>
           ))}

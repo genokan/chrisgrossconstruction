@@ -6,7 +6,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about Chris Gross Construction, a locally owned post-frame builder based north of Holton, Kansas with more than 25 years serving northeast Kansas.",
+    "Learn about Chris Gross Construction, a locally owned post-frame builder based in Holton, Kansas with more than 25 years serving northeast Kansas.",
   alternates: { canonical: "/about/" },
 };
 
@@ -14,20 +14,20 @@ export default function AboutPage() {
   return (
     <>
       <PageHeader eyebrow="About" title="Built on local trust">
-        Chris Gross Construction is a locally owned business based north of
-        Holton, Kansas. Started by Chris Gross more than 25 years ago, we serve
-        families, farms, and local businesses throughout northeast Kansas.
+        Chris Gross Construction is a locally owned business based in Holton,
+        Kansas. Started by Chris Gross more than 25 years ago, we serve families,
+        farms, and local businesses throughout northeast Kansas.
       </PageHeader>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_0.8fr]">
           <div className="space-y-10">
             <section>
-              <h2 className="text-2xl md:text-3xl">Rooted north of Holton</h2>
+              <h2 className="text-2xl md:text-3xl">Rooted in Holton</h2>
               <div className="mt-4 space-y-5 leading-relaxed text-steel-600">
                 <p>
-                  Our office is on Memory Lane north of Holton, and our work has
-                  always been centered around northeast Kansas. We know the area,
+                  Our office is on Memory Lane in Holton, and our work has always
+                  been centered around northeast Kansas. We know the area,
                   the people, the weather, and the kind of practical buildings
                   that have to hold up here.
                 </p>

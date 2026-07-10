@@ -11,7 +11,6 @@ type QuotePayload = {
   email?: unknown;
   phone?: unknown;
   projectType?: unknown;
-  preferredContact?: unknown;
   comments?: unknown;
   company?: unknown;
   "cf-turnstile-response"?: unknown;
@@ -26,7 +25,15 @@ const projectTypes = new Set([
   "Not sure yet",
 ]);
 
-const contactMethods = new Set(["Phone", "Text", "Email"]);
+// Human-friendly quote reference: MMDDYYYY-NNNN (e.g. 07092026-2342).
+// Date for at-a-glance sorting, four random digits to keep it unique.
+export function generateReference(now: Date = new Date()): string {
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
+  const yyyy = now.getFullYear();
+  const random = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+  return `${mm}${dd}${yyyy}-${random}`;
+}
 
 export async function onRequestPost(context: {
   request: Request;
@@ -54,8 +61,9 @@ export async function onRequestPost(context: {
       }
     }
 
-    await sendQuoteEmail(context.env, quote);
-    return json({ ok: true });
+    const reference = generateReference();
+    await sendQuoteEmail(context.env, quote, reference);
+    return json({ ok: true, reference });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unable to send quote request.";
     const status = message.startsWith("Missing") || message.startsWith("Invalid") ? 400 : 500;
@@ -74,7 +82,6 @@ function validateQuote(payload: QuotePayload) {
   const email = requiredString(payload.email, "email", 180);
   const phone = requiredString(payload.phone, "phone", 60);
   const projectType = requiredString(payload.projectType, "project type", 80);
-  const preferredContact = requiredString(payload.preferredContact, "preferred contact method", 20);
   const comments = optionalString(payload.comments, 2000);
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -85,11 +92,7 @@ function validateQuote(payload: QuotePayload) {
     throw new Error("Invalid project type.");
   }
 
-  if (!contactMethods.has(preferredContact)) {
-    throw new Error("Invalid preferred contact method.");
-  }
-
-  return { name, email, phone, projectType, preferredContact, comments };
+  return { name, email, phone, projectType, comments };
 }
 
 async function verifyTurnstile(secret: string, token: string, remoteIp?: string) {
@@ -115,9 +118,9 @@ async function sendQuoteEmail(
     email: string;
     phone: string;
     projectType: string;
-    preferredContact: string;
     comments: string;
   },
+  reference: string,
 ) {
   const accountId = env.CLOUDFLARE_ACCOUNT_ID;
   const token = env.CLOUDFLARE_EMAIL_API_TOKEN;
@@ -128,14 +131,14 @@ async function sendQuoteEmail(
     throw new Error("Quote email is not configured.");
   }
 
-  const subject = `Quote request from ${quote.name}`;
+  const subject = `Quote ${reference} from ${quote.name}`;
   const text = [
     "New quote request from chrisgrossconstruction.com",
+    `Quote #: ${reference}`,
     "",
     `Name: ${quote.name}`,
     `Email: ${quote.email}`,
     `Phone: ${quote.phone}`,
-    `Preferred contact: ${quote.preferredContact}`,
     `Project type: ${quote.projectType}`,
     "",
     "Comments:",
@@ -143,12 +146,12 @@ async function sendQuoteEmail(
   ].join("\n");
 
   const html = `
-    <h2>New quote request</h2>
+    <h2>New quote request — ${escapeHtml(reference)}</h2>
     <table cellpadding="6" cellspacing="0" style="border-collapse:collapse">
+      ${row("Quote #", reference)}
       ${row("Name", quote.name)}
       ${row("Email", quote.email)}
       ${row("Phone", quote.phone)}
-      ${row("Preferred contact", quote.preferredContact)}
       ${row("Project type", quote.projectType)}
     </table>
     <h3>Comments</h3>

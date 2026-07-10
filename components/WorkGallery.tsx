@@ -44,7 +44,7 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={p.image}
-                alt={`${p.title} — ${p.location}`}
+                alt={p.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -57,9 +57,6 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
               <h3 className="font-display text-lg font-semibold text-steel-900">
                 {p.title}
               </h3>
-              <p className="mt-0.5 font-display text-xs font-semibold uppercase tracking-wide text-accent">
-                {p.location}
-              </p>
               <p className="mt-2 text-sm leading-relaxed text-steel-600">{p.blurb}</p>
             </div>
           </button>
@@ -97,7 +94,7 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
             <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg bg-black">
               <Image
                 src={projects[active].image}
-                alt={`${projects[active].title} — ${projects[active].location}`}
+                alt={projects[active].title}
                 fill
                 sizes="100vw"
                 className="object-contain"
@@ -109,7 +106,7 @@ export default function WorkGallery({ projects }: { projects: Project[] }) {
                 {projects[active].title}
               </span>
               <span className="font-display text-xs font-semibold uppercase tracking-wide text-accent">
-                {projects[active].category} · {projects[active].location}
+                {projects[active].category}
               </span>
             </figcaption>
           </figure>

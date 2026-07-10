@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { type FormEvent, useState } from "react";
+import { site } from "@/lib/site";
 
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -14,8 +15,6 @@ const projectTypes = [
   "Not sure yet",
 ];
 
-const contactMethods = ["Phone", "Text", "Email"];
-
 declare global {
   interface Window {
     turnstile?: {
@@ -27,6 +26,7 @@ declare global {
 export default function QuoteRequestForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [reference, setReference] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +44,7 @@ export default function QuoteRequestForm() {
       });
       const contentType = response.headers.get("content-type") || "";
       const result = contentType.includes("application/json")
-        ? ((await response.json()) as { error?: string })
+        ? ((await response.json()) as { error?: string; reference?: string })
         : {};
 
       if (!response.ok) {
@@ -53,12 +53,16 @@ export default function QuoteRequestForm() {
 
       form.reset();
       window.turnstile?.reset();
+      setReference(result.reference || "");
       setStatus("success");
-      setMessage("Thanks. We received your request and will follow up soon.");
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Unable to send your request.");
     }
+  }
+
+  if (status === "success") {
+    return <SuccessPanel reference={reference} />;
   }
 
   return (
@@ -87,49 +91,26 @@ export default function QuoteRequestForm() {
 
         <Field label="Email" name="email" type="email" autoComplete="email" required />
 
-        <div className="grid gap-5 sm:grid-cols-2">
-          <label className="grid gap-2">
-            <span className="font-display text-xs font-semibold uppercase tracking-wide text-accent">
-              What are you looking to build?
-            </span>
-            <select
-              name="projectType"
-              required
-              className="h-12 rounded-md border border-line bg-white px-3 text-steel-900 outline-none transition-colors focus:border-accent"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select one
+        <label className="grid gap-2">
+          <span className="font-display text-xs font-semibold uppercase tracking-wide text-accent">
+            What are you looking to build?
+          </span>
+          <select
+            name="projectType"
+            required
+            className="h-12 rounded-md border border-line bg-white px-3 text-steel-900 outline-none transition-colors focus:border-accent"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select one
+            </option>
+            {projectTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
               </option>
-              {projectTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="grid gap-2">
-            <span className="font-display text-xs font-semibold uppercase tracking-wide text-accent">
-              Preferred contact method
-            </span>
-            <select
-              name="preferredContact"
-              required
-              className="h-12 rounded-md border border-line bg-white px-3 text-steel-900 outline-none transition-colors focus:border-accent"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select one
-              </option>
-              {contactMethods.map((method) => (
-                <option key={method} value={method}>
-                  {method}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+            ))}
+          </select>
+        </label>
 
         <label className="grid gap-2">
           <span className="font-display text-xs font-semibold uppercase tracking-wide text-accent">
@@ -159,11 +140,9 @@ export default function QuoteRequestForm() {
           {status === "submitting" ? "Sending..." : "Request a Quote"}
         </button>
 
-        {message && (
+        {status === "error" && message && (
           <p
-            className={`text-sm font-medium ${
-              status === "success" ? "text-steel-700" : "text-red-700"
-            }`}
+            className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
             role="status"
           >
             {message}
@@ -171,6 +150,46 @@ export default function QuoteRequestForm() {
         )}
       </form>
     </>
+  );
+}
+
+function SuccessPanel({ reference }: { reference: string }) {
+  return (
+    <div
+      role="status"
+      className="rounded-lg border-2 border-accent bg-accent/5 px-6 py-7 sm:px-8"
+    >
+      <div className="flex items-start gap-4">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </span>
+        <div>
+          <h3 className="font-display text-xl font-semibold text-steel-900">
+            Request received — thank you!
+          </h3>
+          <p className="mt-2 leading-relaxed text-steel-700">
+            We&apos;ve got your details and will follow up soon.
+            {reference && (
+              <>
+                {" "}
+                Your quote reference is{" "}
+                <strong className="whitespace-nowrap text-steel-900">{reference}</strong> — hang
+                onto it for any follow-up.
+              </>
+            )}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-steel-600">
+            Prefer to talk it through? Call{" "}
+            <a href={site.phoneHref} className="font-semibold text-accent hover:text-accent-600">
+              {site.phoneDisplay}
+            </a>
+            . {site.callNote}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

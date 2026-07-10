@@ -27,6 +27,9 @@ export const site = {
   hours: "Mon–Fri, 7am–5pm",
   yearsInBusiness: "More than 25 years",
 
+  // Shown near call CTAs so callers know voicemail is monitored.
+  callNote: "If we miss your call, please leave a message — we return every call.",
+
   areaBlurb: "Based in Holton — about 30 minutes north of Topeka.",
   serviceArea: [
     "Holton",

@@ -55,6 +55,9 @@ export default function ContactPage() {
                   external
                 />
               </div>
+              <p className="mt-4 text-sm leading-relaxed text-steel-600">
+                {site.callNote}
+              </p>
             </div>
 
             <dl className="space-y-5">
