@@ -26,7 +26,7 @@ export default function CallButton({
       className={`inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-display font-semibold uppercase tracking-wide text-[0.95rem] transition-colors ${styles[variant]} ${className}`}
     >
       <PhoneIcon />
-      {children ?? "Call for a Quote"}
+      {children ?? "Call Us for a Quote"}
     </a>
   );
 }

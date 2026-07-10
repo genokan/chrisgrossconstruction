@@ -19,8 +19,13 @@ yarn-debug.log*
 yarn-error.log*
 
 # env
+.env
 .env*.local
 
 # editor / scratch
 .playwright-mcp/
 *.jpeg
+
+# local agent context (not committed)
+AGENTS.md
+CLAUDE.md

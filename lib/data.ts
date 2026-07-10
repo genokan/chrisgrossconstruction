@@ -2,19 +2,16 @@ export type Project = {
   slug: string;
   title: string;
   category: "Barndominium" | "Shop" | "Garage" | "Ag Building" | "Commercial";
-  location: string;
   image: string;
   blurb: string;
 };
 
-// Real Chris Gross Construction builds. Locations are approximate placeholders —
-// swap in the actual town for each project when confirmed.
+// Real Chris Gross Construction builds.
 export const projects: Project[] = [
   {
     slug: "wraparound-porch-barndominium",
     title: "Barndominium with Wraparound Porch",
     category: "Barndominium",
-    location: "Holton, KS",
     image: "/photos/p02.jpg",
     blurb: "Living quarters and an attached shop under one roof, wrapped in a covered porch.",
   },
@@ -22,7 +19,6 @@ export const projects: Project[] = [
     slug: "stone-wainscot-barndominium",
     title: "Custom Barndominium Home",
     category: "Barndominium",
-    location: "Soldier, KS",
     image: "/photos/p08.jpg",
     blurb: "White post-frame home with stone wainscot, wraparound porch, and matching detached garage.",
   },
@@ -30,7 +26,6 @@ export const projects: Project[] = [
     slug: "two-story-barndominium",
     title: "Two-Story Barndominium",
     category: "Barndominium",
-    location: "Meriden, KS",
     image: "/photos/p07.jpg",
     blurb: "A two-story home with timber-accented porch and a full attached shop.",
   },
@@ -38,7 +33,6 @@ export const projects: Project[] = [
     slug: "sunset-barndominium",
     title: "Custom Barndominium",
     category: "Barndominium",
-    location: "Jackson County, KS",
     image: "/photos/p01.jpg",
     blurb: "Gray post-frame home with black cross-buck doors, cupolas, and stone accents.",
   },
@@ -46,7 +40,6 @@ export const projects: Project[] = [
     slug: "post-frame-home-garage",
     title: "Post-Frame Home & Garage",
     category: "Barndominium",
-    location: "Hoyt, KS",
     image: "/photos/p04.jpg",
     blurb: "A tan barndominium with attached garage, covered porch, and clean metal siding.",
   },
@@ -54,7 +47,6 @@ export const projects: Project[] = [
     slug: "modern-barndominium",
     title: "Modern Barndominium",
     category: "Barndominium",
-    location: "Valley Falls, KS",
     image: "/photos/p10.jpg",
     blurb: "A striking black post-frame home with a two-story glass gable and timber entry.",
   },
@@ -62,7 +54,6 @@ export const projects: Project[] = [
     slug: "equipment-shop",
     title: "Equipment Shop",
     category: "Shop",
-    location: "Mayetta, KS",
     image: "/photos/p05.jpg",
     blurb: "A spacious red shop with a lean-to — room for the tractor, the toys, and the projects.",
   },
@@ -70,7 +61,6 @@ export const projects: Project[] = [
     slug: "detached-garage-shop",
     title: "Detached Garage & Shop",
     category: "Garage",
-    location: "Topeka, KS",
     image: "/photos/p09.jpg",
     blurb: "A three-bay white-and-black garage with cupola and lean-to for vehicles and gear.",
   },
@@ -78,7 +68,6 @@ export const projects: Project[] = [
     slug: "farm-machine-shed",
     title: "Farm Machine Shed",
     category: "Ag Building",
-    location: "Netawaka, KS",
     image: "/photos/p03.jpg",
     blurb: "A bold red-and-black machine shed with a large sliding door, built for everyday work.",
   },
@@ -86,7 +75,6 @@ export const projects: Project[] = [
     slug: "commercial-shop",
     title: "Commercial Shop Building",
     category: "Commercial",
-    location: "Holton, KS",
     image: "/photos/p06.jpg",
     blurb: "A clean, low-maintenance commercial post-frame building with paved access.",
   },

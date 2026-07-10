@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import CallButton from "@/components/CallButton";
+import PageHeader from "@/components/PageHeader";
 import { services, customization } from "@/lib/data";
 import { site } from "@/lib/site";
 
@@ -14,18 +15,12 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <section className="border-b border-line bg-surface-2">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <p className="eyebrow">What We Build</p>
-          <h1 className="mt-2 text-4xl md:text-5xl">Post-frame, done right</h1>
-          <p className="mt-4 max-w-2xl leading-relaxed text-steel-600">
-            Post-frame construction is the smart, durable, cost-effective way to
-            build — from a dream barndominium to a working machine shed. One local
-            team handles your project from the first conversation to the final
-            walkthrough.
-          </p>
-        </div>
-      </section>
+      <PageHeader eyebrow="What We Build" title="Post-frame, done right">
+        Post-frame construction is the smart, durable, cost-effective way to
+        build — from a dream barndominium to a working machine shed. One local
+        team handles your project from the first conversation to the final
+        walkthrough.
+      </PageHeader>
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="grid gap-14">
@@ -82,7 +77,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-3xl px-5 py-16 text-center">
           <h2 className="text-3xl text-white md:text-4xl">Let&apos;s build yours.</h2>
           <p className="mt-3 text-lg text-white/90">
-            Free quotes — just give Chris a call.
+            Free quotes — just give us a call.
           </p>
           <CallButton variant="light" className="mt-7">
             Call {site.phoneDisplay}
