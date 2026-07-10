@@ -104,7 +104,7 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </span>
-          <span>Building Your Dreams — one build at a time.</span>
+          <span>Building Your Dreams — one post at a time.</span>
         </div>
       </div>
     </footer>
