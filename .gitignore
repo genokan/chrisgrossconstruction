@@ -25,6 +25,8 @@ yarn-error.log*
 # editor / scratch
 .playwright-mcp/
 *.jpeg
+/tmp/
+*.docx
 
 # local agent context (not committed)
 AGENTS.md
