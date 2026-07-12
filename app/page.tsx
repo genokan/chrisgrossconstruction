@@ -66,7 +66,7 @@ export default function Home() {
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Link
             href="/work/"
-            className="group relative block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
+            className="group block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
           >
             <Image
               src={latest.image}
@@ -75,9 +75,6 @@ export default function Home() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <span className="absolute left-4 top-4 rounded bg-accent px-2.5 py-1 font-display text-xs font-semibold uppercase tracking-wide text-white">
-              Latest Build
-            </span>
           </Link>
           <div>
             <p className="eyebrow">Featured Project</p>
