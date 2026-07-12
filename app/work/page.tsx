@@ -16,9 +16,9 @@ export default function WorkPage() {
   return (
     <>
       <PageHeader eyebrow="Our Work" title="Builds we&apos;re proud of">
-        A look at recent post-frame projects around northeast Kansas — from
-        custom barndominiums to working shops and machine sheds. Tap any photo
-        to take a closer look.
+        A look at post-frame projects across northeast Kansas — from custom
+        barndominiums to working shops and machine sheds. Tap any photo to take
+        a closer look.
       </PageHeader>
 
       <section className="mx-auto max-w-6xl px-5 py-16">

@@ -95,7 +95,7 @@ export default function Home() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Our Work</p>
-            <h2 className="mt-2 text-3xl md:text-4xl">Recent builds around northeast Kansas</h2>
+            <h2 className="mt-2 text-3xl md:text-4xl">Post-frame builds across northeast Kansas</h2>
           </div>
           <Link
             href="/work/"
