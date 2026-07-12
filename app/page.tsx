@@ -4,7 +4,8 @@ import CallButton from "@/components/CallButton";
 import { site } from "@/lib/site";
 import { projects, services, customization, valueProps } from "@/lib/data";
 
-const featured = projects.slice(0, 6);
+const latest = projects[0];
+const featured = projects.slice(1, 7);
 
 export default function Home() {
   return (
@@ -60,8 +61,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured work */}
+      {/* Latest build spotlight */}
       <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <Link
+            href="/work/"
+            className="group relative block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
+          >
+            <Image
+              src={latest.image}
+              alt={latest.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <span className="absolute left-4 top-4 rounded bg-accent px-2.5 py-1 font-display text-xs font-semibold uppercase tracking-wide text-white">
+              Latest Build
+            </span>
+          </Link>
+          <div>
+            <p className="eyebrow">Featured Project</p>
+            <h2 className="mt-2 text-3xl md:text-4xl">{latest.title}</h2>
+            <p className="mt-4 max-w-md leading-relaxed text-steel-600">{latest.blurb}</p>
+            <Link
+              href="/work/"
+              className="mt-7 inline-flex font-display text-sm font-semibold uppercase tracking-wide text-accent hover:text-accent-600"
+            >
+              See more of our work →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured work */}
+      <section className="mx-auto max-w-6xl px-5 pb-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Our Work</p>
