@@ -5,12 +5,24 @@ updates:
     schedule:
       interval: weekly
     groups:
-      # Bundle routine updates into a single PR to keep noise down.
-      all-dependencies:
+      # Bundle only routine minor/patch updates into one PR to keep noise down.
+      # Major bumps (e.g. Next, TypeScript, ESLint) come as individual PRs so
+      # framework upgrades can be reviewed and tested one at a time.
+      minor-and-patch:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
+    groups:
+      actions-minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
