@@ -33,6 +33,8 @@ yarn-error.log*
 *.jpeg
 /tmp/
 *.docx
+# raw camera/phone originals — convert to web formats before committing
+*.heic
 
 # local agent context (not committed)
 AGENTS.md
