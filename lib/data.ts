@@ -9,6 +9,13 @@ export type Project = {
 // Real Chris Gross Construction builds.
 export const projects: Project[] = [
   {
+    slug: "banner-creek-animal-hospital",
+    title: "Banner Creek Animal Hospital",
+    category: "Commercial",
+    image: "/photos/holton-vet-clinic.webp",
+    blurb: "A full-service veterinary clinic in gray steel with a stone wainscot, standing-seam metal roof, and a separate boarding & grooming wing — built for low maintenance and steady daily traffic.",
+  },
+  {
     slug: "wraparound-porch-barndominium",
     title: "Barndominium with Wraparound Porch",
     category: "Barndominium",
