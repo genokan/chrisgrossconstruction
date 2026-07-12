@@ -66,7 +66,7 @@ export default function Home() {
         <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
           <Link
             href="/work/"
-            className="group block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
+            className="group relative block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
           >
             <Image
               src={latest.image}
