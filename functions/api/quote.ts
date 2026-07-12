@@ -35,6 +35,18 @@ export function generateReference(now: Date = new Date()): string {
   return `${mm}${dd}${yyyy}-${random}`;
 }
 
+// QUOTE_TO_EMAIL may be a single address or a comma-separated list. Returns a
+// clean array of recipients, falling back to the default if none are set.
+// NOTE: on the routing-only (free) setup, every recipient must be a verified
+// destination address in Email Routing, or the send fails.
+export function parseRecipients(value: string | undefined, fallback: string): string[] {
+  const recipients = (value ?? "")
+    .split(",")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  return recipients.length > 0 ? recipients : [fallback];
+}
+
 export async function onRequestPost(context: {
   request: Request;
   env: Env;
@@ -124,7 +136,7 @@ async function sendQuoteEmail(
 ) {
   const accountId = env.CLOUDFLARE_ACCOUNT_ID;
   const token = env.CLOUDFLARE_EMAIL_API_TOKEN;
-  const to = env.QUOTE_TO_EMAIL || "chrisgrossconstruction@gmail.com";
+  const to = parseRecipients(env.QUOTE_TO_EMAIL, "chrisgrossconstruction@gmail.com");
   const from = env.QUOTE_FROM_EMAIL;
 
   if (!accountId || !token || !from) {

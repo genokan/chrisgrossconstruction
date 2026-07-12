@@ -81,11 +81,15 @@ Cloudflare setup:
   - `CLOUDFLARE_ACCOUNT_ID`
   - `CLOUDFLARE_EMAIL_API_TOKEN`
   - `QUOTE_FROM_EMAIL` such as `quotes@chrisgrossconstruction.com`
-  - `QUOTE_TO_EMAIL` as `chrisgrossconstruction@gmail.com`
+  - `QUOTE_TO_EMAIL` as `chrisgrossconstruction@gmail.com`. Accepts a
+    comma-separated list to notify multiple people, e.g.
+    `chris@example.com, cgtech@example.com`.
 
 Cloudflare currently allows free sends to verified destination addresses on all
-plans. Sending automated replies to arbitrary customer addresses requires the
-Workers Paid plan, so the form only sends the lead notification to Chris.
+plans. Every `QUOTE_TO_EMAIL` recipient must be a verified destination address
+in Email Routing, or the send fails. Sending automated replies to arbitrary
+customer addresses requires the Workers Paid plan, so the form only sends the
+lead notification to Chris (and anyone else listed).
 
 ## CI
 
