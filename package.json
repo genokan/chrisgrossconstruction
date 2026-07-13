@@ -12,18 +12,18 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "next": "^15.1.6",
+    "next": "^15.5.20",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/eslintrc": "^3.3.6",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.20",
     "serve": "^14.2.6",
     "tailwindcss": "^4.0.0",
