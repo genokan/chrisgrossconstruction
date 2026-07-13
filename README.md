@@ -33,7 +33,10 @@ npm run dev        # http://localhost:3000
 | `npm run start`   | Serve a production build locally             |
 | `npm run lint`    | ESLint                                       |
 | `npm run typecheck` | `tsc --noEmit`                             |
-| `npm test`        | Vitest (run mode)                            |
+| `npm test`        | Vitest (run mode) — data + helper unit tests |
+| `npm run test:e2e` | Playwright end-to-end tests (builds, serves `out/`, drives Chromium) |
+
+> First E2E run needs the browser: `npx playwright install chromium`.
 
 ## Project structure
 
@@ -93,6 +96,12 @@ lead notification to Chris (and anyone else listed).
 
 ## CI
 
-GitHub Actions (`.github/workflows/ci.yml`) runs lint, typecheck, tests, and
-build on pull requests to `main`. Dependabot keeps npm and Actions dependencies
-current.
+GitHub Actions (`.github/workflows/ci.yml`) runs two jobs on pull requests to
+`main`: `verify` (lint, typecheck, unit tests, build) and `e2e` (Playwright
+end-to-end tests against the built static export). Dependabot keeps npm and
+Actions dependencies current.
+
+Unit tests (`tests/`) cover data and helpers; E2E tests (`e2e/`) cover rendered
+pages — smoke checks that every route loads with working images and no JS
+errors, the gallery lightbox, and the quote form (validation + a mocked success
+response).
