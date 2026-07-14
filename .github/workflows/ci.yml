@@ -109,6 +109,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Build-time public var — Next inlines NEXT_PUBLIC_* at build. Must be
+          # provided here since the Actions build has no Cloudflare Pages env.
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
 
       - name: Deploy to Cloudflare Pages
         id: deploy
