@@ -4,6 +4,10 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    ignore:
+      # Keep @types/node aligned with the Node major pinned in .nvmrc (20).
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       # Bundle only routine minor/patch updates into one PR to keep noise down.
       # Major bumps (e.g. Next, TypeScript, ESLint) come as individual PRs so
