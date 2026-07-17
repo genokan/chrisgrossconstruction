@@ -4,7 +4,6 @@ import CallButton from "@/components/CallButton";
 import { site } from "@/lib/site";
 import { projects, services, customization, valueProps } from "@/lib/data";
 
-const latest = projects[0];
 const featured = projects.slice(1, 7);
 
 export default function Home() {
@@ -13,14 +12,14 @@ export default function Home() {
       {/* Hero */}
       <section className="relative h-[72vh] min-h-[540px] w-full">
         <Image
-          src="/photos/p02.jpg"
-          alt="Custom barndominium with wraparound porch built by Chris Gross Construction"
+          src="/photos/holton-vet-clinic.webp"
+          alt="Banner Creek Animal Hospital — a commercial post-frame veterinary clinic built by Chris Gross Construction"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-ink/40 to-transparent" />
         <div className="absolute inset-0 flex items-center">
           <div className="mx-auto w-full max-w-6xl px-5">
             <div className="max-w-2xl">
@@ -61,37 +60,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest build spotlight */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-          <Link
-            href="/work/"
-            className="group relative block aspect-[4/3] overflow-hidden rounded-lg shadow-sm"
-          >
-            <Image
-              src={latest.image}
-              alt={latest.title}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </Link>
-          <div>
-            <p className="eyebrow">Featured Project</p>
-            <h2 className="mt-2 text-3xl md:text-4xl">{latest.title}</h2>
-            <p className="mt-4 max-w-md leading-relaxed text-steel-600">{latest.blurb}</p>
-            <Link
-              href="/work/"
-              className="mt-7 inline-flex font-display text-sm font-semibold uppercase tracking-wide text-accent hover:text-accent-600"
-            >
-              See more of our work →
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Featured work */}
-      <section className="mx-auto max-w-6xl px-5 pb-20">
+      <section className="mx-auto max-w-6xl px-5 py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Our Work</p>
